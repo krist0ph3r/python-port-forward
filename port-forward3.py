@@ -128,16 +128,16 @@ def sendall(sock, data):
 def start():
     args = sys.argv
 
-    if len(args) < 2:
-        print('<tunnel-port> <endpoint-port>')
+    if len(args) < 3:
+        print('<tunnel-port> <endpoint-host> <endpoint-port>')
         exit()
 
     tunnel = int(args[1])
-    endpoint = int(args[2])
+    endpoint = int(args[3])
 
     while True:
         try:
-            main(('0.0.0.0', tunnel), ('0.0.0.0', endpoint))
+            main(('0.0.0.0', tunnel), (args[2], endpoint))
         except Exception as e:
             print(e)
             print('failure restarting')
