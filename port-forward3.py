@@ -135,12 +135,14 @@ def start():
     tunnel = int(args[2])
     endpoint = int(args[4])
 
-    while True:
+    errors = 0
+    while errors < 5:
         try:
             main((args[1], tunnel), (args[3], endpoint))
         except Exception as e:
             print(e)
-            # print('failure restarting')
-            # continue
+            print('failure restarting')
+            errors = errors + 1
+            continue
 
 start()
